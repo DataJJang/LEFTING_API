@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jhlee.minipj.api.common.dataService.mapper.DataCommonMapper">
+
+<resultMap id="member" type="com.jhlee.minipj.api.test.model.TestVO">
+  <result column="memId" property="memId"/>
+  <result column="memName" property="memName"/>
+  <result column="memEmail" property="memEmail"/>
+  <result column="memMdn" property="memMdn"/>
+  <result column="memNationCode" property="memNationCode"/>
+</resultMap>
+
+
+  <select id="getDual" parameterType="com.jhlee.minipj.api.test.model.TestVO" resultType="com.jhlee.minipj.api.test.model.TestVO">
+
+    select 'jhlee' as memId
+         , '이장훈' as memName
+         , 'datageek@naver.com' as memEmail
+         , '010-8999-0381' as memMdn
+         , '082' as memNationCode
+    from j2t_member
+    limit 1
+
+  </select>
+</mapper>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!-- saved from url=(0142)http://new.dietconsulting.co.kr/checklist/toxic_list_r.php?mem_id=%EB%AC%B8%EC%88%98%EB%A6%B00204&gubun=J&mem_name=%EB%AC%B8%EC%88%98%EB%A6%B0 -->
+<html lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>쥬비스 다이어트 | 아이디 찾기</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta id="Viewport" name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no, address=no, email=no">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="js/jquery.min.js"></script>
+</head>
+
+<body>
+<div id="wrap">
+    <div class="logo">
+        <img src="/assets/images/logo.png" alt="쥬비스로고" width="100%"/>
+    </div>
+    <div class="search_tab">
+        <ul>
+            <li><a href="" class="tab_select">아아디 찾기</a></li>
+            <li><a href="">비밀번호 찾기</a></li>
+        </ul>
+    </div>
+
+    <div class="input_box">
+        <form>
+            <fieldset>
+                <legend>아이디 찾기</legend>
+                <!-- 입력필드 -->
+                <label for="inp_search_name" class="hidden">이름</label>
+                <input type="text" value="" id="inp_search_name" class="input_txt" placeholder="이름">
+                <label for="inp_search_pw" class="hidden">전화번호</label>
+                <input type="password" value="" id="inp_search_pw" class="input_txt" placeholder="전화번호">
+                <!-- 버튼 -->
+                <button type="submit" class="btn_submit" id="submit_search_id">확인</button>
+            </fieldset>
+        </form>
+        <script type="text/javascript">
+					$('.input_box .input_txt').on('click',function(){
+						$(this).addClass('on').siblings().removeClass('on');
+					});
+				</script>
+    </div>
+</div>
+</body>
+</html>

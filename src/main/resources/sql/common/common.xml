@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jhlee.minipj.api.common.dataService.mapper.DataCommonMapper">
+
+    <select id="getBranchList" parameterType="map" resultType="com.jhlee.minipj.api.common.dataService.model.BranchVO">
+    <!-- DataCommonMapper.getBranchList -->
+        SELECT
+                brc_id, brc_area, brc_name, brc_engName, brc_type, stf_id, stf_id2, brc_staffName, brc_postnum,
+                zip_bldgID, zip_postNo, brc_address, brc_direction, brc_addressEng, brc_directionEng, brc_directionUrl, brc_directionImage, brc_parking,
+                brc_seq, brc_startTime, brc_endTime, brc_url, brc_urlBlog, brc_urlSNS, brc_urlCafe, brc_urlKakao, brc_openKakao, brc_email,
+                brc_tel, brc_telDirect, brc_telDirectSms, brc_fax, brc_smsType, brc_smsImage, brc_maxService, brc_maxWaiter, brc_man_maxService,
+                brc_man_maxWaiter, brc_maxCounsel, brc_useYN, brc_manUseYN, brc_closeYN, brc_contactYN, brc_ex_useYN, brc_roomYN, brc_smsCounselYN,
+                brc_manReserveYN, brc_ex_maxService, brc_ex_maxWaiter, brc_roomCount, brc_openDate, brc_roomDate, brc_regDate, brc_udtDate, brc_contents,
+                brc_engContent, brc_app_contents, branch_uid, brc_shopThumbnail, brc_shopImg1, brc_shopImg2, brc_shopImg3, brc_shopImg4, brc_shopImg5, brc_shopImg6, brc_shopImg7, brc_shopImg8, brc_shopImg9,
+                cpn_code, brc_barcodeYN
+        FROM
+                JUVIS2.j2t_branch
+        WHERE
+                1 = 1
+                <if test="brcId != null and brcId != ''">
+                    AND brc_id = #{brcId}
+                </if>
+                <if test="brcCloseYn != null and brcCloseYn != ''">
+                    AND brc_closeYN = #{brcCloseYn}
+                </if>
+                <if test="useYn != null and useYn != ''">
+                    AND brc_useYN = #{useYn}
+                </if>
+                <if test="brcType != null and brcType != ''">
+                    AND brc_type = #{brcType}
+                </if>
+        ORDER
+                BY brc_seq
+    </select>
+
+
+    <resultMap id="ResultMapCode" type="com.jhlee.minipj.api.common.dataService.model.CodeVO">
+        <result property="grpCd" column="pub_group"/>
+        <collection property="cdList" ofType="map">
+            <result property="pubName" column="pub_name"/>
+            <result property="pubDesc" column="pub_desc"/>
+        </collection>
+    </resultMap>
+
+    <select id="getCodeList" parameterType="map" resultMap="ResultMapCode">
+        <!-- DataCommonMapper.getBranchList -->
+        SELECT *
+        FROM   (
+                SELECT pub_seq AS ord_num,
+                       pub_group,
+                       pub_name,
+                       pub_desc
+                FROM   j2t_pubcode
+                <where>
+                    <if test="pubGrpList != null">
+                        pub_group IN  <foreach collection="pubGrpList" item="grpCd"  open="(" close=")" separator=",">#{grpCd}</foreach>
+                    </if>
+                    <if test="pubInCdList != null">
+                        pub_name IN  <foreach collection="pubInCdList" item="inCd"  open="(" close=")" separator=",">#{inCd}</foreach>
+                    </if>
+                    <if test="pubExCdList != null">
+                        pub_name NOT IN  <foreach collection="pubExCdList" item="exCd"  open="(" close=")" separator=",">#{exCd}</foreach>
+                    </if>
+                    AND pub_useYN = 'Y'
+                </where>
+
+                UNION ALL
+                SELECT sort_ord AS ord_num,
+                       pub_group,
+                       pub_name,
+                       pub_desc
+                FROM   j3t_pubcode
+               <where>
+                 <if test="pubGrpList != null">
+                       pub_group IN  <foreach collection="pubGrpList" item="grpCd"  open="(" close=")" separator=",">#{grpCd}</foreach>
+                 </if>
+                 <if test="pubInCdList != null">
+                       pub_name IN  <foreach collection="pubInCdList" item="inCd"  open="(" close=")" separator=",">#{inCd}</foreach>
+                 </if>
+                 <if test="pubExCdList != null">
+                       pub_name NOT IN  <foreach collection="pubExCdList" item="exCd"  open="(" close=")" separator=",">#{exCd}</foreach>
+                 </if>
+                  AND use_yn = 'Y' AND pub_root_yn = 'N'
+               </where>
+
+               ) CODE_TBL
+        GROUP BY CODE_TBL.pub_group,CODE_TBL.pub_name
+        ORDER BY CODE_TBL.pub_group,CODE_TBL.ord_num
+    </select>
+</mapper>

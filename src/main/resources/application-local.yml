@@ -1,0 +1,83 @@
+spring:
+    profiles: local
+    application:
+        name: juvis_api_local
+    autoconfigure:
+        exclude: org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration
+    datasource:
+        password: dnjsgksmseofh)$$@
+        tomcat:
+            db-properties:
+                useSSL: false
+            initial-size: 1
+            max-active: 2
+            max-idle: 2
+            min-idle: 1
+        url: jdbc:mysql://54.180.65.7:3306/JUVIS2?zeroDateTimeBehavior=convertToNull&characterEncoding=UTF-8&serverTimezone=UTC
+        username: juvis
+    data:
+        mongodb:
+            host: localhost
+            port: 27017
+            database: openit
+            authentication-database: admin
+            username: moon
+            password: moon123
+    http:
+        log-request-details: true
+    mvc:
+        locale: ko
+        view:
+            prefix : /WEB-INF/views/
+            suffix : .jsp
+            static-path-pattern : /assets/**
+
+logging:
+    level:
+        root: info
+        mysql: debug
+        mybatis: debug
+        web: debug
+        com.jhlee.minipj: debug
+    file: C:\app\log\juvis_api.log
+    pattern:
+        console: "%d %-5level %-30logger{30}.%M : %msg%n"
+        file: "%d %-5level %-30logger{30}.%M : %msg%n"
+
+mybatis:
+    configuration:
+        cache-enabled: false
+        map-underscore-to-camel-case: true
+    mapper-locations: classpath:sql/**/*.xml
+    type-aliases-package: com.jhlee.minipj.api
+
+server:
+    port : 9002
+
+juvis:
+    file:
+        server: 61.100.11.146
+        port: 22
+        username: juvis
+        password: rhkwjd)(*&
+        physical: /home/juvis_new/file
+        temp: /home/juvis/temp
+    ftp :
+        server : 61.100.11.133
+        port : 22
+        username : juvis
+        password : eksrl123@@
+        keepAliveTimeout : 100
+        autoStart : false
+    message :
+        server :
+        physical :
+        basename : classpath:messages/messages
+        cacheSecond : 10
+        encode : UTF-8
+        locale : ko
+    hub :
+        formdelayurl: http://61.100.11.133:8080/formDelay/modifyFormDelayStatus
+        formdelaycancelurl: http://61.100.11.133:8080/formDelayCancel/modifyFormDelayCancelStatus
+    security:
+        rssKey : d:/dev/rss_key.txt

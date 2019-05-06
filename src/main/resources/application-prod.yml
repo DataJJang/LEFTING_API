@@ -1,0 +1,75 @@
+spring:
+    profiles: prod
+    application:
+        name: juvis_api_prod
+    autoconfigure:
+        exclude: org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration
+    datasource:
+        password: whghlaksgkwk!2
+        tomcat:
+            db-properties:
+                useSSL: false
+            initial-size: 1
+            max-active: 2
+            max-idle: 2
+            min-idle: 1
+        url: jdbc:mysql://61.100.11.133:3306/JUVIS2?zeroDateTimeBehavior=convertToNull&characterEncoding=UTF-8&serverTimezone=UTC
+            username: juvis
+            data:
+                mongodb:
+                    host: localhost
+                    port: 27017
+                    database: openit
+                    authentication-database: admin
+                    username: moon
+                    password: moon123
+
+            http:
+                log-request-details: true
+
+            mvc:
+                locale: ko
+
+        logging:
+            level:
+                root: info
+                mysql: debug
+                mybatis: debug
+                web: debug
+                com.jhlee.minipj.api: debug
+            file: /home/centos/log/api/juvis_api.log
+            pattern:
+                console: "%d %-5level %-30logger{30}.%M : %msg%n"
+                file: "%d %-5level %-30logger{30}.%M : %msg%n"
+
+        mybatis:
+            configuration:
+                cache-enabled: false
+                map-underscore-to-camel-case: true
+            mapper-locations: classpath:sql/**/*.xml
+            type-aliases-package: com.jhlee.minipj.api
+
+        server:
+            port: 8080
+
+        juvis:
+            file:
+                server: file.juvis.co.kr
+                physical: /home
+            ftp:
+                server: 61.100.11.133
+                port: 22
+                username: juvis
+                password: eksrl123@@
+                keepAliveTimeout: 100
+                autoStart: false
+            message:
+                server:
+                physical:
+                basename: classpath:messages/messages
+                cacheSecond: 10
+                encode: UTF-8
+                locale: ko
+            hub:
+                formdelayurl: http://52.79.160.135:8080/formDelay/modifyFormDelayStatus
+                formdelaycancelurl: http://52.79.160.135:8080/formDelayCancel/modifyFormDelayCancelStatus
