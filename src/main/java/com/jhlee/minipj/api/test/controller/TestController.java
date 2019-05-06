@@ -38,7 +38,8 @@ public class TestController  extends AbstractController {
       resultVO.setCode(String.valueOf(pMap.get("code")));
       resultVO.setMessage(String.valueOf(pMap.get("msg")));
     }
-    //service 연계
+
+    resultVO.setData(pMap.get("data"));
 
     return resultVO;
   }
