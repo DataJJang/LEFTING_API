@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lefting.api.member.mapper.MemberMapper">
+
+<resultMap id="member" type="com.lefting.api.member.model.MemberVO">
+  <result column="mem_Id" property="memId"/>
+  <result column="mem_Name" property="memName"/>
+  <result column="mem_Email" property="memEmail"/>
+  <result column="mem_Mdn" property="memMdn"/>
+  <result column="mem_Nation_Code" property="memNationCode"/>
+</resultMap>
+
+  <select id="getMemberInfo" parameterType="com.lefting.api.member.model.MemberVO" resultType="com.lefting.api.member.model.MemberVO">
+
+      select mem_Id, mem_Name, mem_Email, mem_Mdn, mem_Nation_Code
+      from lefting.TB_MEMBER_MASTER
+      limit 1
+
+  </select>
+
+  <select id="getLastConnectInfo" parameterType="com.lefting.api.member.model.MemberVO" resultType="com.lefting.api.member.model.MemberVO">
+
+  </select>
+
+
+  <select id="checkMultiLogin" parameterType="com.lefting.api.member.model.MemberVO" resultType="com.lefting.api.member.model.MemberVO">
+
+  </select>
+
+  <insert id="joinMember" parameterType="com.lefting.api.member.model.MemberVO" useGeneratedKeys="true" keyProperty="memIdx" >
+
+  </insert>
+
+  <select id="findLoginInfo" parameterType="com.lefting.api.member.model.MemberVO" resultType="com.lefting.api.member.model.MemberVO">
+
+  </select>
+
+  <select id="memberLogin" parameterType="com.lefting.api.member.model.MemberVO" resultType="com.lefting.api.member.model.MemberVO">
+
+  </select>
+
+  <select id="tokenLogin" parameterType="com.lefting.api.member.model.MemberVO" resultType="com.lefting.api.member.model.MemberVO">
+
+  </select>
+
+  <update id="modifyMemberInfo" parameterType="com.lefting.api.member.model.MemberVO">
+
+  </update>
+
+  <select id="checkPassword" parameterType="com.lefting.api.member.model.MemberVO" resultType="com.lefting.api.member.model.MemberVO">
+
+  </select>
+
+  <select id="checkToken" parameterType="com.lefting.api.member.model.MemberVO" resultType="com.lefting.api.member.model.MemberVO">
+
+  </select>
+
+  <update id="modifyMemberConnectCnt" parameterType="com.lefting.api.member.model.MemberVO">
+
+  </update>
+
+
+</mapper>

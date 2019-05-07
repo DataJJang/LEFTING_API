@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jhlee.minipj.api.common.dataService.mapper.DataCommonMapper">
+<mapper namespace="com.lefting.api.common.dataService.mapper.DataCommonMapper">
 
-    <select id="getBranchList" parameterType="map" resultType="com.jhlee.minipj.api.common.dataService.model.BranchVO">
+    <select id="getBranchList" parameterType="map" resultType="com.lefting.api.common.dataService.model.BranchVO">
     <!-- DataCommonMapper.getBranchList -->
         SELECT
                 brc_id, brc_area, brc_name, brc_engName, brc_type, stf_id, stf_id2, brc_staffName, brc_postnum,
@@ -34,7 +34,7 @@
     </select>
 
 
-    <resultMap id="ResultMapCode" type="com.jhlee.minipj.api.common.dataService.model.CodeVO">
+    <resultMap id="ResultMapCode" type="com.lefting.api.common.dataService.model.CodeVO">
         <result property="grpCd" column="pub_group"/>
         <collection property="cdList" ofType="map">
             <result property="pubName" column="pub_name"/>
