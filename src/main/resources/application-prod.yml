@@ -5,7 +5,7 @@ spring:
     autoconfigure:
         exclude: org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration
     datasource:
-        password: whghlaksgkwk!2
+        password: abc123!@
         tomcat:
             db-properties:
                 useSSL: false
@@ -52,15 +52,20 @@ spring:
         server:
             port: 8080
 
+
         juvis:
             file:
-                server: file.juvis.co.kr
-                physical: /home
-            ftp:
-                server: 61.100.11.133
+                server: 127.0.0.1
                 port: 22
-                username: juvis
-                password: eksrl123@@
+                username: user
+                password: pass
+                physical: /home/juvis_new/file
+                temp: /home/juvis/temp
+            ftp:
+                server: 127.0.0.1
+                port: 22
+                username: user
+                password: pass
                 keepAliveTimeout: 100
                 autoStart: false
             message:
